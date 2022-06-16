@@ -98,12 +98,12 @@ public final class FieldAndTimeBasedPartitioner<T> extends TimeBasedPartitioner<
 
                 if (value instanceof Struct || value instanceof Map) {
 
-                    final String partitionField = (String) DataUtils.getNestedFieldValue(value, fieldName);
+                    final Object partitionField = DataUtils.getNestedFieldValue(value, fieldName);
 
                     if (formatPath) {
-                        builder.append(String.join(DELIMITER_EQ, fieldName, partitionField));
+                        builder.append(String.join(DELIMITER_EQ, fieldName, partitionField.toString()));
                     } else {
-                        builder.append(partitionField);
+                        builder.append(partitionField.toString());
                     }
                     
                 } else {
